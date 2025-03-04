@@ -48,4 +48,3 @@ class OneMinAIOptionsFlowHandler(config_entries.OptionsFlow):
                 vol.Required("agent_id", default=self.config_entry.options.get("agent_id", "")): str,
             }),
         )
-
