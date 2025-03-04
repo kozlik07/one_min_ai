@@ -16,7 +16,10 @@ class OneMinAIConfigFlow(config_entries.ConfigFlow, domain="one_min_ai"):
             api = OneMinAIAPI(user_input["api_key"])
             try:
                 agents = api.get_agents()
-                return self.async_create_entry(title="1min AI", data=user_input)
+                if agents:
+                    return self.async_create_entry(title="1min AI", data=user_input)
+                else:
+                    errors["base"] = "no_agents_available"
             except Exception:
                 errors["base"] = "invalid_api_key"
 
@@ -42,9 +45,22 @@ class OneMinAIOptionsFlowHandler(config_entries.OptionsFlow):
         if user_input is not None:
             return self.async_create_entry(title="", data=user_input)
 
-        return self.async_show_form(
-            step_id="init",
-            data_schema=vol.Schema({
-                vol.Required("agent_id", default=self.config_entry.options.get("agent_id", "")): str,
-            }),
-        )
+        api = OneMinAIAPI(self.config_entry.data["api_key"])
+        try:
+            agents = api.get_agents()
+            agent_choices = {agent["id"]: agent["name"] for agent in agents}
+            return self.async_show_form(
+                step_id="init",
+                data_schema=vol.Schema({
+                    vol.Required("agent_id", default=self.config_entry.options.get("agent_id", "")): vol.In(agent_choices),
+                }),
+            )
+        except Exception:
+            return self.async_show_form(
+                step_id="init",
+                data_schema=vol.Schema({
+                    vol.Required("agent_id", default=self.config_entry.options.get("agent_id", "")): str,
+                }),
+                errors={"base": "invalid_api_key"},
+            )
+
