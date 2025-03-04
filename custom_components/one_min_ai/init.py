@@ -24,3 +24,4 @@ async def async_unload_entry(hass, config_entry):
     await hass.config_entries.async_forward_entry_unload(config_entry, "sensor")
     hass.data[DOMAIN].pop(config_entry.entry_id)
     return True
+
