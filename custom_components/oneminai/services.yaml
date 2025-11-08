@@ -1,1 +1,36 @@
-
+chat:
+  name: Chat with 1min.AI
+  description: Send a prompt to 1min.AI and get a response.
+  fields:
+    prompt:
+      name: Prompt
+      description: The text prompt to send.
+      required: true
+      example: "Tell me a joke"
+      selector:
+        text:
+    model:
+      name: Model
+      description: AI model to use (default: gpt-4o-mini)
+      example: "gpt-4o-mini"
+      selector:
+        text:
+    web_search:
+      name: Web Search
+      description: Enable web search (default: true)
+      selector:
+        boolean:
+    num_of_site:
+      name: Number of Sites
+      description: Number of web sites to search (default: 1)
+      selector:
+        number:
+          min: 1
+          max: 10
+    max_word:
+      name: Max Words
+      description: Max words in response (default: 500)
+      selector:
+        number:
+          min: 100
+          max: 2000
