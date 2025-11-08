@@ -1,4 +1,10 @@
 {
-  "name": "1min AI Integration",
+  "name": "1min.AI Integration",
+  "content_in_root": false,
+  "zip_release": false,
+  "filename": "oneminai",
+  "domains": ["oneminai"],
+  "homeassistant": "2024.1.0",
+  "hacs": "1.34.0",
   "render_readme": true
 }
