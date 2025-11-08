@@ -1,1 +1,14 @@
-
+{
+  "domain": "oneminai",
+  "name": "1min.AI",
+  "version": "0.1.0",
+  "documentation": "https://github.com/TWOJ_LOGIN/home-assistant-1minai",
+  "issue_tracker": "https://github.com/TWOJ_LOGIN/home-assistant-1minai/issues",
+  "dependencies": [],
+  "codeowners": ["@TWOJ_LOGIN"],
+  "requirements": ["aiohttp>=3.8.0"],
+  "iot_class": "cloud_polling",
+  "config_flow": true,
+  "hacs": ">=1.34.0",
+  "homeassistant": ">=2024.1.0"
+}
